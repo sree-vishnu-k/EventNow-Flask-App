@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard | EventNow{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <h2 class="glow-text">Your Dashboard</h2>
+    <a href="{{ url_for('create_event') }}" class="btn btn-primary">Create Event</a>
+
+    <h3>Your Created Events</h3>
+    {% if created_events %}
+        <ul class="event-list">
+            {% for event in created_events %}
+                <li class="event-item">
+                    <a href="{{ url_for('event_details', event_id=event.id) }}">{{ event.title }}</a> ({{ event.status }})
+                    <a href="{{ url_for('edit_event', event_id=event.id) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ url_for('delete_event', event_id=event.id) }}" method="POST" class="inline-form">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No events created yet.</p>
+    {% endif %}
+
+    <h3>Your Registered Events</h3>
+    {% if registered_events %}
+        <ul class="event-list">
+            {% for event in registered_events %}
+                <li class="event-item">
+                    <a href="{{ url_for('event_details', event_id=event.id) }}">{{ event.title }}</a> ({{ event.status }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No registered events.</p>
+    {% endif %}
+
+    <h3>Your Reminders</h3>
+    {% if reminders %}
+        <ul class="event-list">
+            {% for reminder in reminders %}
+                <li class="event-item">
+                    {{ reminder.event.title }} - {{ reminder.reminder_time.strftime('%Y-%m-%d %H:%M') }}: {{ reminder.message or 'No message' }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reminders set.</p>
+    {% endif %}
+</section>
+{% endblock %}

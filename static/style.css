@@ -1,0 +1,652 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+    /* Light Mode: Shades of white/light gray */
+    background: linear-gradient(145deg, #f0f0f0 0%, #e0e0e0 100%);
+    color: #333333; /* Darker gray for readability */
+    min-height: 100vh;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode {
+    /* Dark Mode: Shades of black/dark gray */
+    background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: #cccccc; /* Light gray for readability */
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #222222; /* Very dark gray for headings in light mode */
+    margin-bottom: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3,
+body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
+    color: #eeeeee; /* Off-white for headings in dark mode */
+}
+
+h1 { font-size: 2.8rem; letter-spacing: -1px; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+p { margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 300; }
+a { color: #555555; /* Medium gray for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover { color: #888888; /* Lighter gray on hover */
+}
+body.dark-mode a { color: #aaaaaa; /* Light gray for links in dark mode */
+}
+body.dark-mode a:hover { color: #ffffff; /* White on hover in dark mode */
+}
+
+/* Lists */
+ul, ol {
+    margin: 0 0 1.5rem 1.5rem;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 0.6rem;
+    transition: transform 0.3s ease;
+}
+
+ul li:hover, ol li:hover {
+    transform: translateX(8px);
+}
+
+/* Navigation */
+.navbar {
+    /* Light Mode: Dark gray to black gradient */
+    background: linear-gradient(90deg, #333333 0%, #000000 100%);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-radius: 0 0 20px 20px;
+}
+
+body.dark-mode .navbar {
+    /* Dark Mode: Lighter gray to dark gray gradient */
+    background: linear-gradient(90deg, #222222 0%, #000000 100%);
+}
+
+.logo-text {
+    font-size: 2.2rem;
+    color: #ffffff; /* White for logo text */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    animation: glow 1.5s infinite alternate; /* Glow animation remains */
+}
+
+.nav-links a, .nav-links button {
+    color: #ffffff; /* White for nav links */
+    margin-left: 2rem;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .nav-links a, body.dark-mode .nav-links button {
+    color: #dddddd; /* Lighter gray for nav links in dark mode */
+}
+
+.nav-links a:hover, .nav-links button:hover {
+    background: #555555; /* Medium gray on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    /* Default button: Dark gray to black */
+    background: linear-gradient(135deg, #444444 0%, #222222 100%);
+    color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    /* Hover: Lighter gray to darker gray */
+    background: linear-gradient(135deg, #666666 0%, #444444 100%);
+}
+
+.btn-primary { background: linear-gradient(135deg, #444444 0%, #222222 100%); }
+.btn-primary:hover { background: linear-gradient(135deg, #666666 0%, #444444 100%); }
+
+.btn-warning { background: linear-gradient(135deg, #cccccc 0%, #999999 100%); color: #333333; } /* Light gray with dark text */
+.btn-warning:hover { background: linear-gradient(135deg, #999999 0%, #cccccc 100%); }
+
+.btn-danger { background: linear-gradient(135deg, #555555 0%, #333333 100%); } /* Darker gray for danger */
+.btn-danger:hover { background: linear-gradient(135deg, #333333 0%, #555555 100%); }
+
+.btn-secondary { background: linear-gradient(135deg, #aaaaaa 0%, #777777 100%); } /* Medium gray */
+.btn-secondary:hover { background: linear-gradient(135deg, #777777 0%, #aaaaaa 100%); }
+
+.btn-login { background: linear-gradient(135deg, #777777 0%, #333333 100%); } /* Gray to dark gray */
+.btn-login:hover { background: linear-gradient(135deg, #333333 0%, #777777 100%); }
+
+.btn-logout { background: linear-gradient(135deg, #555555 0%, #333333 100%); } /* Similar to danger */
+.btn-logout:hover { background: linear-gradient(135deg, #333333 0%, #555555 100%); }
+
+.btn-register { background: linear-gradient(135deg, #888888 0%, #666666 100%); } /* Slightly lighter gray */
+.btn-register:hover { background: linear-gradient(135deg, #666666 0%, #888888 100%); }
+
+.btn-theme { background: linear-gradient(135deg, #e0e0e0 0%, #999999 100%); color: #333333; } /* Light to medium gray for theme toggle */
+.btn-theme:hover { background: linear-gradient(135deg, #999999 0%, #e0e0e0 100%); }
+
+/* Container */
+.container {
+    max-width: 1300px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Form Container */
+.form-container {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 3rem;
+    /* Light Mode: Very light gray to white */
+    background: linear-gradient(135deg, rgba(240, 240, 240, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: floatIn 0.6s ease-out;
+}
+
+body.dark-mode .form-container {
+    /* Dark Mode: Very dark gray to black */
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    /* Subtle gray radial gradient */
+    background: radial-gradient(circle, rgba(100, 100, 100, 0.1) 0%, transparent 60%);
+    transform: rotate(20deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Event Form */
+.event-form {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .event-form {
+        grid-template-columns: 1fr 1fr;
+    }
+    .form-actions {
+        grid-column: span 2;
+    }
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #333333; /* Dark gray label */
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .form-group label {
+    color: #eeeeee; /* Light gray label in dark mode */
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1.3rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    /* Light Mode: White to very light gray */
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    color: #333333;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .form-group select {
+    /* Dark Mode: Dark gray to black */
+    background: linear-gradient(135deg, #333333 0%, #111111 100%);
+    color: #cccccc;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .form-group select option {
+    background: #1a1a1a; /* Dark background for options in dark mode */
+    color: #cccccc; /* Light text for options */
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: #ffffff; /* Keep white on focus in light mode */
+    outline: none;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus,
+body.dark-mode .form-group select:focus {
+    background: #333333; /* Darker gray on focus in dark mode */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-group select {
+    appearance: none;
+    padding-right: 3.5rem;
+    /* SVG for dropdown arrow in light mode (dark gray) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" fill="%23333333"><polygon points="0,0 14,0 7,8"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+}
+
+body.dark-mode .form-group select {
+    /* SVG for dropdown arrow in dark mode (light gray) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" fill="%23cccccc"><polygon points="0,0 14,0 7,8"/></svg>');
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+/* Search Filter */
+.search-filter {
+    display: flex;
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+    padding: 2rem;
+    /* Light Mode: Very light gray to white */
+    background: linear-gradient(135deg, rgba(240, 240, 240, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .search-filter {
+    /* Dark Mode: Very dark gray to black */
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.search-filter:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-filter::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    /* Subtle gray radial gradient */
+    background: radial-gradient(circle, rgba(100, 100, 100, 0.1) 0%, transparent 60%);
+    transform: rotate(20deg);
+    pointer-events: none;
+}
+
+.search-filter input,
+.search-filter select {
+    flex: 1;
+    padding: 1.3rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    /* Light Mode: White to very light gray */
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    color: #333333;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+body.dark-mode .search-filter input,
+body.dark-mode .search-filter select {
+    /* Dark Mode: Dark gray to black */
+    background: linear-gradient(135deg, #333333 0%, #111111 100%);
+    color: #cccccc;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .search-filter select option {
+    background: #1a1a1a; /* Consistent dark background for options */
+    color: #cccccc; /* Light text for readability */
+}
+
+.search-filter input:focus,
+.search-filter select:focus {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: #ffffff; /* Keep white on focus in light mode */
+    outline: none;
+}
+
+body.dark-mode .search-filter input:focus,
+body.dark-mode .search-filter select:focus {
+    background: #333333; /* Darker gray on focus in dark mode */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.search-filter select {
+    appearance: none;
+    padding-right: 3.5rem;
+    /* SVG for dropdown arrow in light mode (dark gray) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" fill="%23333333"><polygon points="0,0 14,0 7,8"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+}
+
+body.dark-mode .search-filter select {
+    /* SVG for dropdown arrow in dark mode (light gray) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" fill="%23cccccc"><polygon points="0,0 14,0 7,8"/></svg>');
+}
+
+.search-filter button {
+    padding: 1.3rem 2.5rem;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    /* Search button: Dark gray to black */
+    background: linear-gradient(135deg, #444444 0%, #222222 100%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.search-filter button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    /* Search button hover: Lighter gray to darker gray */
+    background: linear-gradient(135deg, #666666 0%, #444444 100%);
+}
+
+@media (max-width: 768px) {
+    .search-filter {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+    .search-filter input,
+    .search-filter select,
+    .search-filter button {
+        width: 100%;
+    }
+}
+
+/* Flash Messages */
+.flash {
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 500;
+    /* Default flash: Medium gray */
+    background: linear-gradient(135deg, #999999 0%, #777777 100%);
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    animation: floatIn 0.5s ease;
+}
+
+.flash.success { background: linear-gradient(135deg, #777777 0%, #333333 100%); color: #ffffff; } /* Darker gray for success */
+.flash.danger { background: linear-gradient(135deg, #555555 0%, #222222 100%); color: #ffffff; } /* Even darker gray for danger */
+.flash.warning { background: linear-gradient(135deg, #bbbbbb 0%, #888888 100%); color: #333333; } /* Lighter gray for warning with dark text */
+
+/* Tables */
+table {
+    width: 100%;
+    margin-top: 2.5rem;
+    /* Light Mode: Very light gray to white */
+    background: linear-gradient(135deg, rgba(240, 240, 240, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+body.dark-mode table {
+    /* Dark Mode: Very dark gray to black */
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+}
+
+th, td {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+th {
+    /* Table Header: Dark gray to black */
+    background: linear-gradient(90deg, #333333 0%, #000000 100%);
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+body.dark-mode th {
+    /* Table Header Dark Mode: Lighter gray to dark gray */
+    background: linear-gradient(90deg, #222222 0%, #000000 100%);
+}
+
+tr {
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+tr:hover {
+    transform: scale(1.01);
+    background: rgba(240, 240, 240, 0.7); /* Lighter gray on hover in light mode */
+}
+
+body.dark-mode tr:hover {
+    background: rgba(30, 30, 30, 0.7); /* Darker gray on hover in dark mode */
+}
+
+/* Event Image */
+.event-image {
+    max-width: 150px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Styling */
+.status-upcoming { color: #555555; font-weight: 600; } /* Medium gray */
+.status-ongoing { color: #888888; font-weight: 600; } /* Lighter gray */
+.status-past { color: #333333; font-weight: 600; } /* Dark gray */
+
+/* Pagination */
+.pagination {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+.pagination a, .pagination span {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    /* Light Mode: White to very light gray */
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+body.dark-mode .pagination a, body.dark-mode .pagination span {
+    /* Dark Mode: Dark gray to black */
+    background: linear-gradient(135deg, #333333 0%, #111111 100%);
+    color: #cccccc;
+}
+
+.pagination a:hover {
+    transform: scale(1.05);
+    /* Pagination hover: Dark gray to black */
+    background: linear-gradient(135deg, #444444 0%, #222222 100%);
+    color: #ffffff;
+}
+
+/* Dashboard */
+.dashboard ul {
+    list-style: none;
+    margin: 0;
+}
+
+.event-item {
+    padding: 1.5rem;
+    /* Light Mode: Very light gray to white */
+    background: linear-gradient(135deg, rgba(240, 240, 240, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+    margin: 1rem 0;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .event-item {
+    /* Dark Mode: Very dark gray to black */
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+}
+
+.event-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Star Rating */
+.star-rating-input {
+    display: flex;
+    gap: 0.8rem;
+    font-size: 2.5rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.star {
+    color: #bbbbbb; /* Light gray for unselected stars */
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+body.dark-mode .star {
+    color: #444444; /* Darker gray for unselected stars in dark mode */
+}
+
+.star:hover, .star.active {
+    color: #666666; /* Medium gray when active/hovered */
+    transform: scale(1.1);
+}
+
+.star-rating {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #666666; /* Medium gray for display */
+}
+
+/* Event Details */
+.event-details {
+    /* Light Mode: Very light gray to white */
+    background: linear-gradient(135deg, rgba(240, 240, 240, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%);
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 2.5rem auto;
+    max-width: 1000px;
+}
+
+body.dark-mode .event-details {
+    /* Dark Mode: Very dark gray to black */
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    /* Footer: Dark gray to black */
+    background: linear-gradient(90deg, #333333 0%, #000000 100%);
+    color: #ffffff;
+    width: 100%;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 20px 20px 0 0;
+}
+
+body.dark-mode footer {
+    /* Footer Dark Mode: Lighter gray to dark gray */
+    background: linear-gradient(90deg, #222222 0%, #000000 100%);
+}
+
+/* Animations */
+@keyframes glow {
+    from { text-shadow: 0 0 8px rgba(100, 100, 100, 0.5); } /* Subtle gray glow */
+    to { text-shadow: 0 0 20px rgba(100, 100, 100, 0.9); }
+}
+
+@keyframes floatIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

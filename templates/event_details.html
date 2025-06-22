@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Event Details | EventNow{% endblock %}
+
+{% block content %}
+<section class="event-details">
+    <h1 class="glow-text">{{ event.title }}</h1>
+    {% if event.image_url %}
+        <img src="{{ event.image_url }}" alt="{{ event.title }}" class="event-image">
+    {% endif %}
+    <div class="event-info">
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p><strong>Date:</strong> {{ event.event_date.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p><strong>Location:</strong> {{ event.location or 'N/A' }}</p>
+        <p><strong>Category:</strong> {{ event.category.name if event.category else 'Uncategorized' }}</p>
+        <p><strong>Status:</strong> <span class="status-{{ event.status|lower }}">{{ event.status }}</span></p>
+        <p><strong>Created By:</strong> {{ event.creator.name }}</p>
+    </div>
+    <div class="event-actions">
+        {% if session.get('id') != event.created_by and not is_registered %}
+            <a href="{{ url_for('join_event', event_id=event.id) }}" class="btn btn-primary">Join this Event</a>
+        {% endif %}
+        {% if session.get('loggedin') %}
+            <a href="{{ url_for('rate_event', event_id=event.id) }}" class="btn btn-primary">Rate Event</a>
+            <a href="{{ url_for('set_reminder', event_id=event.id) }}" class="btn btn-primary">Set Reminder</a>
+        {% endif %}
+    </div>
+    {% if registrations %}
+        <h3>Registered Users</h3>
+        <ul class="registration-list">
+            {% for reg in registrations %}
+                <li>{{ reg.name }} ({{ reg.email }})</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if ratings %}
+        <h3>Ratings</h3>
+        <ul class="rating-list">
+            {% for rating in ratings %}
+                <li>{{ rating.user.name }}: <span class="star-rating" data-rating="{{ rating.rating }}"></span> - {{ rating.comment or 'No comment' }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>
+{% endblock %}
